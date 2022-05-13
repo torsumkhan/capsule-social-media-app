@@ -4,10 +4,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import postRoutes from "./routes/posts.js";
 
 //initialize the app
 
 const app = express();
+
+//use express middleware to connect to routes
+app.use("/posts", postRoutes);
 
 //Get express app middlewares. limit to 30mb because of image
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
