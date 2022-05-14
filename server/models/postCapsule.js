@@ -2,6 +2,7 @@
 //From the docs - everything in mongoose starts with a schema
 import mongoose from "mongoose";
 
+//Reference: https://mongoosejs.com/docs/guide.html - How to create schema
 const { Schema } = mongoose;
 
 const capsuleSchema = new Schema({
@@ -19,6 +20,7 @@ const capsuleSchema = new Schema({
   },
 });
 
+//Reference: https://mongoosejs.com/docs/models.html - How to create model from schema
 const postCapsule = mongoose.model("postCapsule", capsuleSchema);
 
 export default postCapsule;
