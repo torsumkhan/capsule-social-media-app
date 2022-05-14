@@ -2,10 +2,11 @@
 import express from "express";
 
 //Import the route handler
-import { getPosts } from "../controllers/posts.js";
+import { getCapsules, createCapsule } from "../controllers/posts.js";
 
 const router = express.Router();
 
-router.get("/", getPosts);
+router.get("/", getCapsules);
+router.post("/", createCapsule);
 
 export default router;

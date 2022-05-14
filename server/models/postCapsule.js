@@ -2,6 +2,8 @@
 //From the docs - everything in mongoose starts with a schema
 import mongoose from "mongoose";
 
+//To create the model, first we need to develop the schema
+
 //Reference: https://mongoosejs.com/docs/guide.html - How to create schema
 const { Schema } = mongoose;
 
