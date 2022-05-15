@@ -11,13 +11,13 @@ import postRoutes from "./routes/posts.js";
 const app = express();
 
 //use express middleware to connect to routes
-app.use("/posts", postRoutes);
 
 //Get express app middlewares. limit to 30mb because of image
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+app.use("/posts", postRoutes);
 //connect to mongo DB - https://www.mongodb.com/atlas/database
 //Save the connection URL to .env later
 const CONNECTION_URL =

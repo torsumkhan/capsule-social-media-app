@@ -1,9 +1,99 @@
-import React from "react";
+import React, { useState } from "react";
+import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import FileBase from "react-file-base64";
 import useStyles from "./styles";
+import { useDispatch } from "react-redux";
+import { createCapsule } from "../../actions/capsules";
 
 const Form = () => {
+  const [capsuleData, setCapsuleData] = useState({
+    title: "",
+    text: "",
+    tags: "",
+    selectFile: "",
+  });
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createCapsule(capsuleData));
+  };
+  const clear = () => {
+    console.log("clear");
+  };
+
   const classes = useStyles();
-  return <h1>Form</h1>;
+  return (
+    <>
+      <Paper className={`${classes.root} ${classes.form}`}>
+        <form
+          autoComplete="off"
+          noValidate
+          className={classes.form}
+          onSubmit={handleSubmit}
+        >
+          <TextField
+            name="title"
+            variant="outlined"
+            label="Title"
+            fullWidth="true"
+            value={capsuleData.title}
+            onChange={(e) => {
+              setCapsuleData({ ...capsuleData, title: e.target.value });
+            }}
+          />
+          <TextField
+            name="text"
+            variant="outlined"
+            label="Text"
+            fullWidth="true"
+            value={capsuleData.text}
+            onChange={(e) => {
+              setCapsuleData({ ...capsuleData, text: e.target.value });
+            }}
+          />
+          <TextField
+            name="tags"
+            variant="outlined"
+            label="Tags"
+            fullWidth="true"
+            value={capsuleData.tags}
+            onChange={(e) => {
+              setCapsuleData({ ...capsuleData, tags: e.target.value });
+            }}
+          />
+          <div className={classes.fileInput}>
+            <FileBase
+              type="file"
+              multiple={false}
+              onDone={({ base64 }) =>
+                setCapsuleData({ ...capsuleData, selectFile: base64 })
+              }
+            />
+          </div>
+          <Button
+            className={classes.buttonSubmit}
+            variant="contained"
+            size="large"
+            type="submit"
+            fullWidth="true"
+            style={{ backgroundColor: "#9b5de5", color: "white" }}
+          >
+            Submit
+          </Button>
+          <Button
+            className={classes.buttonSubmit}
+            variant="outlined"
+            color="secondary"
+            size="large"
+            onClick={clear}
+            fullWidth="true"
+          >
+            Clear
+          </Button>
+        </form>
+      </Paper>
+    </>
+  );
 };
 
 export default Form;

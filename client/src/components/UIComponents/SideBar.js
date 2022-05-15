@@ -12,13 +12,13 @@ const SideBar = () => {
   return (
     <Box flex={1} p={2} style={{ display: { xs: "none", sm: "block" } }}>
       <List>
-        <ListItem disablePadding>
+        <ListItem disablepadding="true">
           <ListItemIcon>
             <Home />
           </ListItemIcon>
           <ListItemText primary="HomePage" />
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem disablepadding="true">
           <ListItemIcon>
             <Home />
           </ListItemIcon>

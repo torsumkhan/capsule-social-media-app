@@ -16,7 +16,7 @@ export const getCapsules = async (req, res) => {
 //Reference - https://rahmanfadhil.com/express-rest-api/ - How to create the post
 export const createCapsule = async (req, res) => {
   const post = req.body; //req.body will be used to get all data to create a capsule.
-  const newCapsule = new PostCapsule(post);
+  const newCapsule = new postCapsule(post);
   try {
     await newCapsule.save();
     res.status(201).json(newCapsule);
