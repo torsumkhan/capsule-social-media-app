@@ -13,7 +13,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 
-const Capsule = ({ capsule }) => {
+const Capsule = ({ capsule, setCurrentId }) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
@@ -28,7 +28,11 @@ const Capsule = ({ capsule }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button style={{ color: "white" }} size="small" onClick={() => {}}>
+        <Button
+          style={{ color: "white" }}
+          size="small"
+          onClick={() => setCurrentId(capsule._id)}
+        >
           <MoreHorizIcon fontSize="default" />
         </Button>
       </div>

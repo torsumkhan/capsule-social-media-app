@@ -21,3 +21,12 @@ export const createCapsule = (capsule) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const updateCapsule = (id, capsule) => async (dispatch) => {
+  try {
+    const { data } = await api.updateCapsule(id, capsule);
+    dispatch({ type: "UPDATE", payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

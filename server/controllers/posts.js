@@ -1,6 +1,7 @@
 //Create handlers for the routes
 
 //import postCapsule from the models folder
+import mongoose from "mongoose";
 import postCapsule from "../models/postCapsule.js";
 
 //Reference - https://nodejs.org/en/knowledge/errors/what-is-try-catch/ - Each callback function should have a try and catch block
@@ -23,4 +24,18 @@ export const createCapsule = async (req, res) => {
   } catch (error) {
     res.status(404).json({ text: error.message });
   }
+};
+
+//Usually, the preferred HTTP method to do an update operation into a single record is PATCH - //Reference - https://rahmanfadhil.com/express-rest-api/ - How to create the post
+export const updateCapsule = async (req, res) => {
+  const { id: _id } = req.params;
+  const post = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(404).send("No post with that id");
+
+  const updatedCapsule = await postCapsule.findByIdAndUpdate(_id, post, {
+    new: true,
+  });
+  res.json(updatedCapsule);
 };

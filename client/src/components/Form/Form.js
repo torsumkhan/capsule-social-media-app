@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import useStyles from "./styles";
-import { useDispatch } from "react-redux";
-import { createCapsule } from "../../actions/capsules";
+import { useDispatch, useSelector } from "react-redux";
+import { createCapsule, updateCapsule } from "../../actions/capsules";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [capsuleData, setCapsuleData] = useState({
     title: "",
     text: "",
     tags: "",
     selectFile: "",
   });
+  const capsule = useSelector((state) =>
+    currentId ? state.capsules.find((p) => p._id === currentId) : null
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (capsule) setCapsuleData(capsule);
+  }, [capsule]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createCapsule(capsuleData));
+    if (currentId) {
+      dispatch(updateCapsule(currentId, capsuleData));
+    } else {
+      dispatch(createCapsule(capsuleData));
+    }
   };
   const clear = () => {
     console.log("clear");

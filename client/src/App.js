@@ -19,6 +19,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
 const App = () => {
+  const [currentId, setCurrentId] = useState(null);
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const disptach = useDispatch();
@@ -57,7 +58,7 @@ const App = () => {
               style={{ direction: "column-reverse" }}
             >
               <Grid item xs={12} sm={7} md={12}>
-                <Capsules />
+                <Capsules setCurrentId={setCurrentId} />
               </Grid>
             </Grid>
           </div>
@@ -81,7 +82,7 @@ const App = () => {
           >
             Create New
           </Typography>
-          <Form />
+          <Form currentId={currentId} setCurrentId={setCurrentId} />
         </Box>
       </Modal>
     </Box>

@@ -7,7 +7,7 @@ import useStyles from "./styles";
 import Masonry from "react-masonry-css";
 import "./masonry.css";
 
-const Capsules = () => {
+const Capsules = ({ setCurrentId }) => {
   const capsules = useSelector((state) => state.capsules);
   const classes = useStyles();
   console.log(capsules);
@@ -28,7 +28,7 @@ const Capsules = () => {
       >
         {capsules.map((capsule) => (
           <div item key={capsule._id}>
-            <Capsule capsule={capsule} />
+            <Capsule capsule={capsule} setCurrentId={setCurrentId} />
           </div>
         ))}
       </Masonry>
