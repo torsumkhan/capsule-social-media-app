@@ -13,7 +13,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { deleteCapsule } from "../../../actions/capsules";
+import { deleteCapsule, likeCapsule } from "../../../actions/capsules";
 
 const Capsule = ({ capsule, setCurrentId }) => {
   const classes = useStyles();
@@ -41,16 +41,23 @@ const Capsule = ({ capsule, setCurrentId }) => {
       </div>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
-          {capsule.tags.map((tag) => `#${tag}`)}
+          {capsule.tags.map((tag) => `#${tag} `)}
         </Typography>
       </div>
+      <Typography className={classes.title} variant="h5" gutterBottom>
+        {capsule.title}
+      </Typography>
       <CardContent>
-        <Typography className={classes.title} variant="h5" gutterBottom>
+        <Typography variant="body2" component="p" style={{ color: "gray" }}>
           {capsule.text}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(likeCapsule(capsule._id))}
+        >
           <ThumbUpAltIcon fontSize="small" />
           like
           {capsule.like}

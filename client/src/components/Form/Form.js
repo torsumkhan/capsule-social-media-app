@@ -69,7 +69,10 @@ const Form = ({ currentId, setCurrentId }) => {
             fullWidth="true"
             value={capsuleData.tags}
             onChange={(e) => {
-              setCapsuleData({ ...capsuleData, tags: e.target.value });
+              setCapsuleData({
+                ...capsuleData,
+                tags: e.target.value.split(","),
+              });
             }}
           />
           <div className={classes.fileInput}>

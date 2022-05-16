@@ -39,3 +39,12 @@ export const deleteCapsule = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const likeCapsule = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.likeCapsule(id);
+    dispatch({ type: "UPDATE", payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

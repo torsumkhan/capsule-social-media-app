@@ -50,3 +50,20 @@ export const deleteCapsule = async (req, res) => {
 
   res.json({ text: "Deleted Successfully" });
 };
+
+export const likeCapsule = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("Post with this ID does not exist");
+
+  const capsule = await postCapsule.findById(id);
+  const updatedCapsule = await postCapsule.findByIdAndUpdate(
+    id,
+    {
+      like: capsule.like + 1,
+    },
+    { new: true }
+  );
+  res.json(updatedCapsule);
+};
