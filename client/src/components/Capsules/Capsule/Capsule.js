@@ -26,6 +26,7 @@ const Capsule = ({ capsule, setCurrentId }) => {
         title={capsule.title}
       />
       <div className={classes.overlay}>
+        <Typography variant="h6">{capsule.name}</Typography>
         <Typography variant="body2">
           {moment(capsule.createdAt).fromNow()}
         </Typography>
@@ -55,7 +56,7 @@ const Capsule = ({ capsule, setCurrentId }) => {
       <CardActions className={classes.cardActions}>
         <Button
           size="small"
-          color="primary"
+          style={{ color: "#9b5de5" }}
           onClick={() => dispatch(likeCapsule(capsule._id))}
         >
           <ThumbUpAltIcon fontSize="small" />
@@ -64,7 +65,7 @@ const Capsule = ({ capsule, setCurrentId }) => {
         </Button>
         <Button
           size="small"
-          color="primary"
+          style={{ color: "gray" }}
           onClick={() => dispatch(deleteCapsule(capsule._id))}
         >
           <DeleteIcon fontSize="small" />

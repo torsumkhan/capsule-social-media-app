@@ -7,6 +7,7 @@ import { createCapsule, updateCapsule } from "../../actions/capsules";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [capsuleData, setCapsuleData] = useState({
+    name: "",
     title: "",
     text: "",
     tags: "",
@@ -42,6 +43,16 @@ const Form = ({ currentId, setCurrentId }) => {
           className={classes.form}
           onSubmit={handleSubmit}
         >
+          <TextField
+            name="name"
+            variant="outlined"
+            label="Name"
+            fullWidth="true"
+            value={capsuleData.name}
+            onChange={(e) => {
+              setCapsuleData({ ...capsuleData, name: e.target.value });
+            }}
+          />
           <TextField
             name="title"
             variant="outlined"

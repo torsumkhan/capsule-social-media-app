@@ -75,7 +75,7 @@ const App = () => {
         aria-describedby="modal-modal-description"
         style={modalStyle}
       >
-        <Box width={600} height={420} bgcolor="white" p={3} borderRadius={5}>
+        <Box width={600} height={460} bgcolor="white" p={3} borderRadius={5}>
           <Typography
             variant="h6"
             style={{ color: "gray", textAlign: "center" }}

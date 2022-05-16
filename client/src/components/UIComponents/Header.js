@@ -13,6 +13,7 @@ import {
 import Camera from "@material-ui/icons/Camera";
 import Mail from "@material-ui/icons/Mail";
 import Notifications from "@material-ui/icons/Notifications";
+import { format } from "date-fns";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -38,6 +39,9 @@ const Header = () => {
       <StyledToolbar>
         <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
           <Camera sx={{ display: { xs: "block", sm: "none" } }} />
+        </Typography>
+        <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+          Today is the {format(new Date(), "do MMMM Y")}
         </Typography>
         <Search>
           <InputBase placeholder="search tags..." />

@@ -5,10 +5,12 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
+import dotenv from "dotenv";
 
 //initialize the app
 
 const app = express();
+dotenv.config();
 
 //use express middleware to connect to routes
 
@@ -20,12 +22,12 @@ app.use(cors());
 app.use("/posts", postRoutes);
 //connect to mongo DB - https://www.mongodb.com/atlas/database
 //Save the connection URL to .env later
-const CONNECTION_URL =
-  "mongodb+srv://torsumkhan:Torsum1988@cluster0.sx5di.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const CONNECTION_URL =
+//   "mongodb+srv://torsumkhan:Torsum1988@cluster0.sx5di.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 8000;
 
 mongoose
-  .connect(CONNECTION_URL, {
+  .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
