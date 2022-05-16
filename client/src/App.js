@@ -47,20 +47,20 @@ const App = () => {
       <Header />
 
       <Grow in>
-        <Container>
-          <Grid
-            container
-            justifyContent="space-between"
-            alignItems="stretch"
-            spacing={3}
-          >
-            {/* <Grid item xs={12} sm={4}>
-              <Form />
-            </Grid> */}
-            <Grid item xs={12} sm={7}>
-              <Capsules />
+        <Container maxWidth="xl">
+          <div style={{ margin: "2.4rem" }}>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="stretch"
+              spacing={5}
+              style={{ direction: "column-reverse" }}
+            >
+              <Grid item xs={12} sm={7} md={12}>
+                <Capsules />
+              </Grid>
             </Grid>
-          </Grid>
+          </div>
         </Container>
       </Grow>
       <Fab style={floatStyle} variant="extended" onClick={(e) => setOpen(true)}>
@@ -83,7 +83,6 @@ const App = () => {
           </Typography>
           <Form />
         </Box>
-        {/* <Form /> */}
       </Modal>
     </Box>
   );

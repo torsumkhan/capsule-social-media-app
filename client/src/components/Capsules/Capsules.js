@@ -1,20 +1,38 @@
 import React from "react";
 import Capsule from "./Capsule/Capsule";
+import { Container, Grid } from "@material-ui/core";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 import useStyles from "./styles";
+import Masonry from "react-masonry-css";
+import "./masonry.css";
 
 const Capsules = () => {
   const capsules = useSelector((state) => state.capsules);
   const classes = useStyles();
   console.log(capsules);
-  return (
-    <>
-      <h1>Capsules</h1>
-      <Capsule />
-      <Capsule />
-      <Capsule />
-      <Capsule />
-    </>
+
+  const breakpoints = {
+    default: 3,
+    1100: 2,
+    700: 1,
+  };
+  return !capsules.length ? (
+    <CircularProgress />
+  ) : (
+    <Container>
+      <Masonry
+        breakpointCols={breakpoints}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {capsules.map((capsule) => (
+          <div item key={capsule._id}>
+            <Capsule capsule={capsule} />
+          </div>
+        ))}
+      </Masonry>
+    </Container>
   );
 };
 
