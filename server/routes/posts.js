@@ -6,6 +6,7 @@ import {
   getCapsules,
   createCapsule,
   updateCapsule,
+  deleteCapsule,
 } from "../controllers/posts.js";
 
 const router = express.Router();
@@ -13,5 +14,6 @@ const router = express.Router();
 router.get("/", getCapsules);
 router.post("/", createCapsule);
 router.patch("/:id", updateCapsule); //for editing, we need the id, thats why we use :id, : will mean its dynamic
+router.delete("/:id", deleteCapsule);
 
 export default router;

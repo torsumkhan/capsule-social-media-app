@@ -17,7 +17,7 @@ const Capsules = ({ setCurrentId }) => {
     1100: 2,
     700: 1,
   };
-  return !capsules.length ? (
+  return !capsules.length < 0 ? (
     <CircularProgress />
   ) : (
     <Container>
