@@ -37,7 +37,7 @@ const Capsule = ({ capsule, setCurrentId }) => {
           size="small"
           onClick={() => setCurrentId(capsule._id)}
         >
-          <MoreHorizIcon fontSize="default" />
+          <MoreHorizIcon fontSize="medium" />
         </Button>
       </div>
       <div className={classes.details}>

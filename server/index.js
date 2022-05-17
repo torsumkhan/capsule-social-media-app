@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.js";
 
 //initialize the app
 
@@ -20,10 +21,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use("/posts", postRoutes);
-//connect to mongo DB - https://www.mongodb.com/atlas/database
-//Save the connection URL to .env later
-// const CONNECTION_URL =
-//   "mongodb+srv://torsumkhan:Torsum1988@cluster0.sx5di.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+app.use("/user", userRoutes);
+
 const PORT = process.env.PORT || 8000;
 
 mongoose

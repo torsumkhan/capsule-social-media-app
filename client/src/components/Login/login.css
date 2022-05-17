@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;800&display=swap");
+
+
+
+.login {
+    width: 100vw;
+    height: 100vh;
+    background-color: #EAE9F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+
+.loginWrapper {
+    width: 70%;
+    height: 70%;
+    display: flex;
+}
+
+.loginLeft, .loginRight{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.loginTagline {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 50px;
+    font-weight: 800;
+    color: #9b5de5
+}
+.cont{
+    display: flex;
+    align-items: center;
+    margin-bottom: -50px;
+
+
+}
+
+.loginDesc {
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    margin-left: 40 px;
+    color:#6E6975
+}
+
+.loginBox{
+    height: 300px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.loginInput{
+    height: 16px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.loginButton{
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #9b5de5;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.loginRegister{
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f72585;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+}
