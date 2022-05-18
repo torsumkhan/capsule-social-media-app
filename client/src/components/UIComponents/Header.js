@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   AppBar,
@@ -9,8 +9,11 @@ import {
   InputBase,
   Badge,
   Avatar,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 import Camera from "@material-ui/icons/Camera";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Mail from "@material-ui/icons/Mail";
 import Notifications from "@material-ui/icons/Notifications";
 import { format } from "date-fns";
@@ -33,9 +36,10 @@ const Icons = styled(Box)({
   alignItems: "center",
 });
 
-const Header = () => {
+const Header = ({ setLoginUser }) => {
+  const [open, setOpen] = useState(false);
   return (
-    <AppBar style={{ background: "#9b5de5" }} position="sticky">
+    <AppBar style={{ background: "#9b5de5", zIndex: 3000 }} position="sticky">
       <StyledToolbar>
         <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
           <Camera sx={{ display: { xs: "block", sm: "none" } }} />
@@ -53,9 +57,36 @@ const Header = () => {
           <Badge badgeContent={4} color="error">
             <Notifications />
           </Badge>
-          <Avatar style={{ width: 30, height: 30 }} />
+          <Badge>
+            <LogoutIcon onClick={() => setLoginUser({})} />
+          </Badge>
+          <Badge>
+            <Avatar
+              style={{ width: 36, height: 36 }}
+              src={require("../../images/86.jpg")}
+              onClick={(e) => setOpen(true)}
+            />
+          </Badge>
         </Icons>
       </StyledToolbar>
+      <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        open={open}
+        onClose={(e) => setOpen(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem onClick={() => {}}>Logout</MenuItem>
+      </Menu>
     </AppBar>
   );
 };

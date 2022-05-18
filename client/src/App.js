@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import Details from "./components/Details/Details";
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,7 +18,7 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             {user && user._id ? (
-              <Home />
+              <Home setLoginUser={setLoginUser} />
             ) : (
               <Login setLoginUser={setLoginUser} />
             )}

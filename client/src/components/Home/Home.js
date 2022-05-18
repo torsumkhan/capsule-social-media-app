@@ -16,7 +16,7 @@ import { getCapsules } from "../../actions/capsules";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
-const Home = () => {
+const Home = ({ setLoginUser }) => {
   const [currentId, setCurrentId] = useState(null);
   const [open, setOpen] = useState(false);
   const classes = useStyles();
@@ -43,7 +43,7 @@ const Home = () => {
   }, []);
   return (
     <Box>
-      <Header />
+      <Header setLoginUser={setLoginUser} />
 
       <Grow in>
         <Container maxWidth="xl">

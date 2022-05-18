@@ -7,6 +7,7 @@ import {
   CardMedia,
   Button,
   Typography,
+  ButtonBase,
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -14,8 +15,14 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deleteCapsule, likeCapsule } from "../../../actions/capsules";
+import { useHistory } from "react-router-dom";
 
 const Capsule = ({ capsule, setCurrentId }) => {
+  const history = useHistory();
+
+  // const openDetails = () => {
+  //   history.push(`/posts/${post._id}`);
+  // };
   const classes = useStyles();
   const dispatch = useDispatch();
   return (
@@ -53,6 +60,7 @@ const Capsule = ({ capsule, setCurrentId }) => {
           {capsule.text}
         </Typography>
       </CardContent>
+
       <CardActions className={classes.cardActions}>
         <Button
           size="small"

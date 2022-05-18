@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Camera from "@material-ui/icons/Camera";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 import "./login.css";
 
@@ -55,7 +56,9 @@ const Login = ({ setLoginUser }) => {
             <button className="loginButton" onClick={login}>
               Log In
             </button>
-            <div>or</div>
+            <Typography variant="h6" align="center">
+              or
+            </Typography>
             <button
               className="loginRegister"
               onClick={() => history.push("/user/register")}
