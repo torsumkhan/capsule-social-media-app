@@ -42,6 +42,15 @@ const Home = ({ setLoginUser }) => {
   useEffect(() => {
     disptach(getCapsules());
   }, []);
+
+  const handleModal = () => {
+    setOpen(!open);
+  };
+
+  const clearCurrentId = () => {
+    setCurrentId(null);
+  };
+
   return (
     <Box>
       <Header setLoginUser={setLoginUser} />
@@ -57,23 +66,22 @@ const Home = ({ setLoginUser }) => {
               style={{ direction: "column-reverse" }}
             >
               <Grid item xs={12} sm={7} md={12}>
-                <Capsules setCurrentId={setCurrentId} />
+                <Capsules
+                  setCurrentId={setCurrentId}
+                  handleModal={handleModal}
+                />
               </Grid>
             </Grid>
           </div>
         </Container>
       </Grow>
-      <a href="/add">
-        <Fab
-          style={floatStyle}
-          variant="extended"
-          // onClick={(e) => setOpen(true)}
-        >
-          <AddIcon />
-          Create
-        </Fab>
-      </a>
-      {/* <Modal
+      {/* <a href="/add"> */}
+      <Fab style={floatStyle} variant="extended" onClick={(e) => setOpen(true)}>
+        <AddIcon />
+        Create
+      </Fab>
+      {/* </a> */}
+      <Modal
         open={open}
         onClose={(e) => setOpen(false)}
         aria-labelledby="modal-modal-title"
@@ -87,9 +95,14 @@ const Home = ({ setLoginUser }) => {
           >
             Create New
           </Typography>
-          <Form currentId={currentId} setCurrentId={setCurrentId} />
+          <Form
+            clearCurrentId={clearCurrentId}
+            currentId={currentId}
+            setCurrentId={setCurrentId}
+            handleModal={handleModal}
+          />
         </Box>
-      </Modal> */}
+      </Modal>
     </Box>
   );
 };

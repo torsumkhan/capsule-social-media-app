@@ -5,32 +5,46 @@ import useStyles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { createCapsule, updateCapsule } from "../../actions/capsules";
 
-const Form = ({ currentId, setCurrentId }) => {
-  const [capsuleData, setCapsuleData] = useState({
+const Form = ({ currentId, setCurrentId, handleModal, clearCurrentId }) => {
+  const initialState = {
     name: "",
     title: "",
     text: "",
     tags: "",
     selectFile: "",
-  });
+  };
+
+  const [capsuleData, setCapsuleData] = useState(initialState);
   const capsule = useSelector((state) =>
     currentId ? state.capsules.find((p) => p._id === currentId) : null
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("xxxxxxxxxxxx", capsule);
     if (capsule) setCapsuleData(capsule);
   }, [capsule]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
+      console.log("---->>>>>", capsuleData);
       dispatch(updateCapsule(currentId, capsuleData));
     } else {
       dispatch(createCapsule(capsuleData));
     }
+    handleModal();
+    clear();
+    clearCurrentId();
   };
   const clear = () => {
-    console.log("clear");
+    setCapsuleData({
+      name: "",
+      title: "",
+      text: "",
+      tags: "",
+      selectFile: "",
+    });
   };
 
   const classes = useStyles();

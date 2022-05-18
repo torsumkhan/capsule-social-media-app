@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FormLabel, TextField, Button } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import Box from "@mui/material/Box";
+import axios from "axios";
 
 const Create = () => {
   const [inputs, setInputs] = useState({
@@ -15,6 +16,15 @@ const Create = () => {
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
+
+  const sendRequest = async () => {
+    axios.post("http://localhost:8000/posts", {
+      name: String(inputs.name),
+      title: String(inputs.name),
+      text: String(inputs.text),
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);

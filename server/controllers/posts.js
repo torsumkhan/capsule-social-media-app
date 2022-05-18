@@ -40,18 +40,16 @@ export const createCapsule = async (req, res) => {
 
 //Usually, the preferred HTTP method to do an update operation into a single record is PATCH - //Reference - https://rahmanfadhil.com/express-rest-api/ - How to create the post
 export const updateCapsule = async (req, res) => {
-  const { id } = req.params;
-  const { name, title, text, selectFile, tags } = req.body;
+  const { id: _id } = req.params;
+  const post = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(404).send("No post with that id");
 
-  const updatedCapsule = { name, title, text, selectFile, tags, _id: id };
-
-  await postCapsule.findByIdAndUpdate(id, updatedCapsule, {
+  const updatedCapsule = await postCapsule.findByIdAndUpdate(_id, post, {
     new: true,
   });
-  res.json(updatedCapsule);
+  return res.json(updatedCapsule);
 };
 
 export const deleteCapsule = async (req, res) => {

@@ -17,7 +17,7 @@ import { useDispatch } from "react-redux";
 import { deleteCapsule, likeCapsule } from "../../../actions/capsules";
 import { useHistory } from "react-router-dom";
 
-const Capsule = ({ capsule, setCurrentId }) => {
+const Capsule = ({ capsule, setCurrentId, handleModal }) => {
   const history = useHistory();
 
   // const openDetails = () => {
@@ -42,7 +42,10 @@ const Capsule = ({ capsule, setCurrentId }) => {
         <Button
           style={{ color: "white" }}
           size="small"
-          onClick={() => setCurrentId(capsule._id)}
+          onClick={() => {
+            setCurrentId(capsule._id);
+            handleModal();
+          }}
         >
           <MoreHorizIcon fontSize="medium" />
         </Button>

@@ -7,6 +7,6 @@ export const fetchPosts = () => axios.get(url);
 export const getDetail = (id) => axios.get(`${url}/${id}`);
 export const createCapsule = (newCapsule) => axios.post(url, newCapsule);
 export const updateCapsule = (id, updatedCapsule) =>
-  axios.patch(`${url}/${id}`, updatedCapsule);
+  axios.put(`${url}/${id}`, updatedCapsule);
 export const deleteCapsule = (id) => axios.delete(`${url}/${id}`);
 export const likeCapsule = (id) => axios.patch(`${url}/${id}/likePost`);
