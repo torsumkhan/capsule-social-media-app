@@ -8,13 +8,15 @@ import {
   updateCapsule,
   deleteCapsule,
   likeCapsule,
+  getPost,
 } from "../controllers/posts.js";
 
 const router = express.Router();
 
 router.get("/", getCapsules);
+router.get("/:id", getPost);
 router.post("/", createCapsule);
-router.patch("/:id", updateCapsule); //for editing, we need the id, thats why we use :id, : will mean its dynamic
+router.patch("/:id", updateCapsule);
 router.delete("/:id", deleteCapsule);
 router.patch("/:id/likePost", likeCapsule);
 

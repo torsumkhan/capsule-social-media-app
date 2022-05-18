@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
+import Form from "./components/Form/Form";
 import Register from "./components/Register/Register";
 import Details from "./components/Details/Details";
 import {
@@ -28,6 +29,9 @@ const App = () => {
           </Route>
           <Route path="/user/register">
             <Register />
+          </Route>
+          <Route exact path="/posts/add">
+            <Form />
           </Route>
         </Switch>
       </Router>

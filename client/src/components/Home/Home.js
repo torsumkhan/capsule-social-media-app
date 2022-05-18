@@ -3,6 +3,7 @@ import Header from "../UIComponents/Header";
 import Form from "../Form/Form";
 import Capsules from "../Capsules/Capsules";
 import useStyles from "../../styles";
+import { Link } from "react-router-dom";
 import {
   Container,
   Grow,
@@ -62,11 +63,17 @@ const Home = ({ setLoginUser }) => {
           </div>
         </Container>
       </Grow>
-      <Fab style={floatStyle} variant="extended" onClick={(e) => setOpen(true)}>
-        <AddIcon />
-        Create
-      </Fab>
-      <Modal
+      <Link to="/add">
+        <Fab
+          style={floatStyle}
+          variant="extended"
+          // onClick={(e) => setOpen(true)}
+        >
+          <AddIcon />
+          Create
+        </Fab>
+      </Link>
+      {/* <Modal
         open={open}
         onClose={(e) => setOpen(false)}
         aria-labelledby="modal-modal-title"
@@ -82,7 +89,7 @@ const Home = ({ setLoginUser }) => {
           </Typography>
           <Form currentId={currentId} setCurrentId={setCurrentId} />
         </Box>
-      </Modal>
+      </Modal> */}
     </Box>
   );
 };
