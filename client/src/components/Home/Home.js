@@ -63,7 +63,7 @@ const Home = ({ setLoginUser }) => {
           </div>
         </Container>
       </Grow>
-      <Link to="/add">
+      <a href="/add">
         <Fab
           style={floatStyle}
           variant="extended"
@@ -72,7 +72,7 @@ const Home = ({ setLoginUser }) => {
           <AddIcon />
           Create
         </Fab>
-      </Link>
+      </a>
       {/* <Modal
         open={open}
         onClose={(e) => setOpen(false)}
