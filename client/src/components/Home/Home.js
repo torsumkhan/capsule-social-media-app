@@ -20,6 +20,9 @@ import AddIcon from "@mui/icons-material/Add";
 const Home = ({ setLoginUser }) => {
   const [currentId, setCurrentId] = useState(null);
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(true);
+  const [updateForm, setUpdateForm] = useState(false);
+  const [update, setUpdate] = useState(false);
   const classes = useStyles();
   const disptach = useDispatch();
   const floatStyle = {
@@ -43,17 +46,39 @@ const Home = ({ setLoginUser }) => {
     disptach(getCapsules());
   }, []);
 
-  const handleModal = () => {
+  const handleModal = (isUpdate) => {
     setOpen(!open);
+    setUpdate(isUpdate || false);
+    setUpdateForm(true);
   };
 
   const clearCurrentId = () => {
     setCurrentId(null);
   };
 
+  const openModal = (e) => setOpen(true);
+  const showNav = (e) => {
+    setShow(false);
+  };
+
+  const onCreate = () => {
+    openModal();
+    showNav();
+    setUpdate(false);
+    setUpdateForm(false);
+  };
+
+  const onModalClose = () => {
+    setOpen(false);
+    setShow(true);
+  };
+
+  const onClickUpdate = () => {
+    setUpdate(true);
+  };
   return (
     <Box>
-      <Header setLoginUser={setLoginUser} />
+      {show ? <Header setLoginUser={setLoginUser} /> : null}
 
       <Grow in>
         <Container maxWidth="xl">
@@ -69,6 +94,8 @@ const Home = ({ setLoginUser }) => {
                 <Capsules
                   setCurrentId={setCurrentId}
                   handleModal={handleModal}
+                  showNav={showNav}
+                  updateForm={updateForm}
                 />
               </Grid>
             </Grid>
@@ -76,14 +103,14 @@ const Home = ({ setLoginUser }) => {
         </Container>
       </Grow>
       {/* <a href="/add"> */}
-      <Fab style={floatStyle} variant="extended" onClick={(e) => setOpen(true)}>
+      <Fab style={floatStyle} variant="extended" onClick={onCreate}>
         <AddIcon />
         Create
       </Fab>
       {/* </a> */}
       <Modal
         open={open}
-        onClose={(e) => setOpen(false)}
+        onClose={onModalClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         style={modalStyle}
@@ -93,9 +120,10 @@ const Home = ({ setLoginUser }) => {
             variant="h6"
             style={{ color: "gray", textAlign: "center" }}
           >
-            Create New
+            {!updateForm ? "Create New" : "Update"}
           </Typography>
           <Form
+            torsum={update}
             clearCurrentId={clearCurrentId}
             currentId={currentId}
             setCurrentId={setCurrentId}

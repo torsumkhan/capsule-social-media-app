@@ -57,7 +57,7 @@ const Login = ({ setLoginUser }) => {
               Log In
             </button>
             <Typography variant="h6" align="center">
-              or
+              Don't have an account? Register below
             </Typography>
             <button
               className="loginRegister"

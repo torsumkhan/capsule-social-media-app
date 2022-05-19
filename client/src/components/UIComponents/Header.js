@@ -38,6 +38,7 @@ const Icons = styled(Box)({
 
 const Header = ({ setLoginUser }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <AppBar style={{ background: "#9b5de5", zIndex: 3000 }} position="sticky">
       <StyledToolbar>

@@ -5,7 +5,13 @@ import useStyles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { createCapsule, updateCapsule } from "../../actions/capsules";
 
-const Form = ({ currentId, setCurrentId, handleModal, clearCurrentId }) => {
+const Form = ({
+  currentId,
+  setCurrentId,
+  handleModal,
+  clearCurrentId,
+  torsum,
+}) => {
   const initialState = {
     name: "",
     title: "",
@@ -117,7 +123,7 @@ const Form = ({ currentId, setCurrentId, handleModal, clearCurrentId }) => {
             fullWidth="true"
             style={{ backgroundColor: "#9b5de5", color: "white" }}
           >
-            Submit
+            {!torsum ? "Submit" : "Update"}
           </Button>
           <Button
             className={classes.buttonSubmit}

@@ -8,6 +8,7 @@ import {
   Button,
   Typography,
   ButtonBase,
+  IconButton,
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -16,15 +17,26 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deleteCapsule, likeCapsule } from "../../../actions/capsules";
 import { useHistory } from "react-router-dom";
+import { FacebookShareButton } from "react-share";
+import { FacebookIcon } from "react-share";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
-const Capsule = ({ capsule, setCurrentId, handleModal }) => {
+const Capsule = ({
+  capsule,
+  setCurrentId,
+  handleModal,
+  showNav,
+  updateForm,
+}) => {
   const history = useHistory();
 
-  // const openDetails = () => {
-  //   history.push(`/posts/${post._id}`);
-  // };
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const tweetfunc = () => {
+    const twitterUrl = `https:twitter.com/intent/tweet?text=${capsule.text}&hashtags=${capsule.tags}`;
+    window.open(twitterUrl, "_blank");
+  };
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -32,19 +44,27 @@ const Capsule = ({ capsule, setCurrentId, handleModal }) => {
         image={capsule.selectFile}
         title={capsule.title}
       />
+
       <div className={classes.overlay}>
         <Typography variant="h6">{capsule.name}</Typography>
         <Typography variant="body2">
           {moment(capsule.createdAt).fromNow()}
         </Typography>
+        <div>
+          <IconButton onClick={tweetfunc}>
+            <TwitterIcon fontSize="small" style={{ color: "white" }} />
+          </IconButton>
+        </div>
       </div>
+
       <div className={classes.overlay2}>
         <Button
           style={{ color: "white" }}
           size="small"
           onClick={() => {
             setCurrentId(capsule._id);
-            handleModal();
+            handleModal(true);
+            showNav(false);
           }}
         >
           <MoreHorizIcon fontSize="medium" />
@@ -71,9 +91,10 @@ const Capsule = ({ capsule, setCurrentId, handleModal }) => {
           onClick={() => dispatch(likeCapsule(capsule._id))}
         >
           <ThumbUpAltIcon fontSize="small" />
-          like
+          &nbsp; like &nbsp;
           {capsule.like}
         </Button>
+
         <Button
           size="small"
           style={{ color: "gray" }}

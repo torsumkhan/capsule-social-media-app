@@ -6,8 +6,9 @@ import { useSelector } from "react-redux";
 import useStyles from "./styles";
 import Masonry from "react-masonry-css";
 import "./masonry.css";
+import { textAlign } from "@mui/system";
 
-const Capsules = ({ setCurrentId, handleModal }) => {
+const Capsules = ({ setCurrentId, handleModal, showNav, updateForm }) => {
   const capsules = useSelector((state) => state.capsules);
   const classes = useStyles();
   console.log(capsules);
@@ -17,8 +18,15 @@ const Capsules = ({ setCurrentId, handleModal }) => {
     1100: 2,
     700: 1,
   };
-  return !capsules.length < 0 ? (
-    <CircularProgress />
+  return !capsules.length ? (
+    <div
+      style={{
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
+      <CircularProgress />
+    </div>
   ) : (
     <Container>
       <Masonry
@@ -32,6 +40,8 @@ const Capsules = ({ setCurrentId, handleModal }) => {
               capsule={capsule}
               setCurrentId={setCurrentId}
               handleModal={handleModal}
+              showNav={showNav}
+              updateForm={updateForm}
             />
           </div>
         ))}
