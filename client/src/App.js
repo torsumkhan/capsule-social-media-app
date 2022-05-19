@@ -35,6 +35,9 @@ const App = () => {
           <Route exact path="/add">
             <Add />
           </Route>
+          <Route exact path="/posts/:id">
+            <Details />
+          </Route>
         </Switch>
       </Router>
     </>

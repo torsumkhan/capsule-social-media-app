@@ -15,6 +15,7 @@ const router = express.Router();
 
 router.get("/", getCapsules);
 router.get("/:id", getPost);
+
 router.post("/", createCapsule);
 router.put("/:id", updateCapsule);
 router.delete("/:id", deleteCapsule);

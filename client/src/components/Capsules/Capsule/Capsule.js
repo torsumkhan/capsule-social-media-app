@@ -17,8 +17,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deleteCapsule, likeCapsule } from "../../../actions/capsules";
 import { useHistory } from "react-router-dom";
-import { FacebookShareButton } from "react-share";
-import { FacebookIcon } from "react-share";
+import EditIcon from "@mui/icons-material/Edit";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 const Capsule = ({
@@ -36,6 +35,10 @@ const Capsule = ({
   const tweetfunc = () => {
     const twitterUrl = `https:twitter.com/intent/tweet?text=${capsule.text}&hashtags=${capsule.tags}`;
     window.open(twitterUrl, "_blank");
+  };
+
+  const openCapsule = () => {
+    history.push(`/posts/${capsule._id}`);
   };
   return (
     <Card className={classes.card}>
@@ -58,15 +61,7 @@ const Capsule = ({
       </div>
 
       <div className={classes.overlay2}>
-        <Button
-          style={{ color: "white" }}
-          size="small"
-          onClick={() => {
-            setCurrentId(capsule._id);
-            handleModal(true);
-            showNav(false);
-          }}
-        >
+        <Button style={{ color: "white" }} size="small" onClick={openCapsule}>
           <MoreHorizIcon fontSize="medium" />
         </Button>
       </div>
@@ -93,6 +88,19 @@ const Capsule = ({
           <ThumbUpAltIcon fontSize="small" />
           &nbsp; like &nbsp;
           {capsule.like}
+        </Button>
+
+        <Button
+          size="small"
+          style={{ color: "gray" }}
+          onClick={() => {
+            setCurrentId(capsule._id);
+            handleModal(true);
+            showNav(false);
+          }}
+        >
+          <EditIcon fontSize="small" />
+          Edit
         </Button>
 
         <Button

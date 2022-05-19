@@ -13,6 +13,16 @@ export const getCapsules = () => async (dispatch) => {
   }
 };
 
+export const getCapsule = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.getDetail(id);
+    console.log("This is data", data);
+    dispatch({ type: "FETCH_POST", payload: { post: data } });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createCapsule = (capsule) => async (dispatch) => {
   try {
     const { data } = await api.createCapsule(capsule);
