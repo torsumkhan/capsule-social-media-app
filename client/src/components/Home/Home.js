@@ -17,7 +17,7 @@ import { getCapsules } from "../../actions/capsules";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
-const Home = ({ setLoginUser }) => {
+const Home = ({ setLoginUser, user }) => {
   const [currentId, setCurrentId] = useState(null);
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(true);
@@ -35,6 +35,8 @@ const Home = ({ setLoginUser }) => {
     backgroundColor: "#9b5de5",
     color: "white",
   };
+
+  console.log("user--------->", user);
 
   const modalStyle = {
     display: "flex",
@@ -96,6 +98,7 @@ const Home = ({ setLoginUser }) => {
                   handleModal={handleModal}
                   showNav={showNav}
                   updateForm={updateForm}
+                  user={user}
                 />
               </Grid>
             </Grid>
@@ -128,6 +131,7 @@ const Home = ({ setLoginUser }) => {
             currentId={currentId}
             setCurrentId={setCurrentId}
             handleModal={handleModal}
+            user={user}
           />
         </Box>
       </Modal>

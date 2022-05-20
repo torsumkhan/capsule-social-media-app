@@ -67,7 +67,7 @@ export const deleteCapsule = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("Post with this ID does not exist.");
 
-  await postCapsule.findByIdAndRemove();
+  await postCapsule.findByIdAndRemove(id);
 
   res.json({ message: "Deleted Successfully" });
 };

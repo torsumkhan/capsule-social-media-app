@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const capsuleSchema = new Schema({
+  creator: String,
   name: String,
   title: String,
   text: String,

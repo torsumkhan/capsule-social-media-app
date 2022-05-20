@@ -21,7 +21,7 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             {user && user._id ? (
-              <Home setLoginUser={setLoginUser} />
+              <Home setLoginUser={setLoginUser} user={user} />
             ) : (
               <Login setLoginUser={setLoginUser} />
             )}

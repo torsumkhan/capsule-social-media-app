@@ -8,7 +8,7 @@ import Masonry from "react-masonry-css";
 import "./masonry.css";
 import { textAlign } from "@mui/system";
 
-const Capsules = ({ setCurrentId, handleModal, showNav, updateForm }) => {
+const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
   const capsules = useSelector((state) => state.capsules);
   const classes = useStyles();
   console.log(capsules);
@@ -42,6 +42,7 @@ const Capsules = ({ setCurrentId, handleModal, showNav, updateForm }) => {
               handleModal={handleModal}
               showNav={showNav}
               updateForm={updateForm}
+              user={user}
             />
           </div>
         ))}

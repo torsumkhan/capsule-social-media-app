@@ -17,8 +17,10 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deleteCapsule, likeCapsule } from "../../../actions/capsules";
 import { useHistory } from "react-router-dom";
-import EditIcon from "@mui/icons-material/Edit";
+import { FacebookShareButton } from "react-share";
+import { FacebookIcon } from "react-share";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import EditIcon from "@mui/icons-material/Edit";
 
 const Capsule = ({
   capsule,
@@ -26,6 +28,7 @@ const Capsule = ({
   handleModal,
   showNav,
   updateForm,
+  user,
 }) => {
   const history = useHistory();
 
@@ -37,9 +40,34 @@ const Capsule = ({
     window.open(twitterUrl, "_blank");
   };
 
-  const openCapsule = () => {
+  console.log("user from home--->", user);
+
+  const openDetails = () => {
     history.push(`/posts/${capsule._id}`);
   };
+
+  console.log("check capsule", capsule);
+
+  let edits;
+  if (user._id === capsule.Creator) {
+    edits = (
+      <Button
+        size="small"
+        style={{ color: "gray" }}
+        onClick={() => {
+          setCurrentId(capsule._id);
+          handleModal(true);
+          showNav(false);
+        }}
+      >
+        <EditIcon fontSize="small" />
+        Edit
+      </Button>
+    );
+  }
+
+  console.log("capsule creator ---->", capsule.creator, user._id);
+
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -61,8 +89,19 @@ const Capsule = ({
       </div>
 
       <div className={classes.overlay2}>
-        <Button style={{ color: "white" }} size="small" onClick={openCapsule}>
+        <Button
+          style={{ color: "white" }}
+          size="small"
+          onClick={() => {
+            setCurrentId(capsule._id);
+            handleModal(true);
+            showNav(false);
+          }}
+        >
           <MoreHorizIcon fontSize="medium" />
+        </Button>
+        <Button onClick={openDetails}>
+          <Typography>Open</Typography>
         </Button>
       </div>
       <div className={classes.details}>
@@ -90,18 +129,7 @@ const Capsule = ({
           {capsule.like}
         </Button>
 
-        <Button
-          size="small"
-          style={{ color: "gray" }}
-          onClick={() => {
-            setCurrentId(capsule._id);
-            handleModal(true);
-            showNav(false);
-          }}
-        >
-          <EditIcon fontSize="small" />
-          Edit
-        </Button>
+        {edits}
 
         <Button
           size="small"

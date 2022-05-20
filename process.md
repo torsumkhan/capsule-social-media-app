@@ -41,3 +41,8 @@ to create a post, use the req.body to get the data
 Create folder structure for JSX
 
 Step
+
+ <!-- let edits;
+  if (user._id === capsule.creator) {
+    edits = <EditIcon />
+  } -->

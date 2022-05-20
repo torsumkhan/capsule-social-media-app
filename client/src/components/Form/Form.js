@@ -11,6 +11,7 @@ const Form = ({
   handleModal,
   clearCurrentId,
   torsum,
+  user,
 }) => {
   const initialState = {
     name: "",
@@ -26,6 +27,8 @@ const Form = ({
   );
   const dispatch = useDispatch();
 
+  const capsuleCreator = user._id;
+
   useEffect(() => {
     console.log("xxxxxxxxxxxx", capsule);
     if (capsule) setCapsuleData(capsule);
@@ -37,7 +40,7 @@ const Form = ({
       console.log("---->>>>>", capsuleData);
       dispatch(updateCapsule(currentId, capsuleData));
     } else {
-      dispatch(createCapsule(capsuleData));
+      dispatch(createCapsule(capsuleData, capsuleCreator));
     }
     handleModal();
     clear();
