@@ -49,7 +49,7 @@ const Capsule = ({
   console.log("check capsule", capsule);
 
   let edits;
-  if (user._id === capsule.Creator) {
+  if (user._id === capsule.creator) {
     edits = (
       <Button
         size="small"
@@ -66,7 +66,21 @@ const Capsule = ({
     );
   }
 
-  console.log("capsule creator ---->", capsule.creator, user._id);
+  let delets;
+  if (user._id === capsule.creator) {
+    delets = (
+      <Button
+        size="small"
+        style={{ color: "gray" }}
+        onClick={() => dispatch(deleteCapsule(capsule._id))}
+      >
+        <DeleteIcon fontSize="small" />
+        Delete
+      </Button>
+    );
+  }
+
+  console.log("capsule creator ---->", capsule, capsule.Creator, user._id);
 
   return (
     <Card className={classes.card}>
@@ -89,19 +103,8 @@ const Capsule = ({
       </div>
 
       <div className={classes.overlay2}>
-        <Button
-          style={{ color: "white" }}
-          size="small"
-          onClick={() => {
-            setCurrentId(capsule._id);
-            handleModal(true);
-            showNav(false);
-          }}
-        >
+        <Button style={{ color: "white" }} size="small" onClick={openDetails}>
           <MoreHorizIcon fontSize="medium" />
-        </Button>
-        <Button onClick={openDetails}>
-          <Typography>Open</Typography>
         </Button>
       </div>
       <div className={classes.details}>
@@ -130,15 +133,7 @@ const Capsule = ({
         </Button>
 
         {edits}
-
-        <Button
-          size="small"
-          style={{ color: "gray" }}
-          onClick={() => dispatch(deleteCapsule(capsule._id))}
-        >
-          <DeleteIcon fontSize="small" />
-          Delete
-        </Button>
+        {delets}
       </CardActions>
     </Card>
   );

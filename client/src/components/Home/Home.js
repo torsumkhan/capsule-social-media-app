@@ -16,13 +16,17 @@ import { useDispatch } from "react-redux";
 import { getCapsules } from "../../actions/capsules";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@mui/icons-material/Add";
+import { useSelector } from "react-redux";
+import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 
-const Home = ({ setLoginUser, user }) => {
+const Home = ({ setLoginUser, user, capsule }) => {
   const [currentId, setCurrentId] = useState(null);
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [updateForm, setUpdateForm] = useState(false);
   const [update, setUpdate] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const classes = useStyles();
   const disptach = useDispatch();
   const floatStyle = {
@@ -78,10 +82,21 @@ const Home = ({ setLoginUser, user }) => {
   const onClickUpdate = () => {
     setUpdate(true);
   };
+
+  const capsulesdd = useSelector((state) => state.capsules);
+
+  const searchOnChange = (e) => {
+    console.log("This is target value", e.target.value);
+    setSearchTerm(e.target.value);
+  };
+
+  console.log("search", capsulesdd);
+  console.log("vvvvvv", capsulesdd.tags);
   return (
     <Box>
       {show ? <Header setLoginUser={setLoginUser} /> : null}
 
+      <input type="text" placeholder="Search" onChange={searchOnChange} />
       <Grow in>
         <Container maxWidth="xl">
           <div style={{ margin: "2.4rem" }}>
@@ -105,12 +120,12 @@ const Home = ({ setLoginUser, user }) => {
           </div>
         </Container>
       </Grow>
-      {/* <a href="/add"> */}
+
       <Fab style={floatStyle} variant="extended" onClick={onCreate}>
         <AddIcon />
         Create
       </Fab>
-      {/* </a> */}
+
       <Modal
         open={open}
         onClose={onModalClose}
@@ -123,7 +138,7 @@ const Home = ({ setLoginUser, user }) => {
             variant="h6"
             style={{ color: "gray", textAlign: "center" }}
           >
-            {!updateForm ? "Create New" : "Update"}
+            {!updateForm ? "Create New" : "Edit"}
           </Typography>
           <Form
             torsum={update}

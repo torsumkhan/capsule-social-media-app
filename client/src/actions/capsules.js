@@ -26,6 +26,7 @@ export const getCapsule = (id) => async (dispatch) => {
 export const createCapsule = (capsule) => async (dispatch) => {
   try {
     const { data } = await api.createCapsule(capsule);
+    console.log("Data---->", data);
     dispatch({ type: "CREATE", payload: data });
   } catch (error) {
     console.log(error);

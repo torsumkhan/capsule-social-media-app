@@ -28,6 +28,7 @@ const Form = ({
   const dispatch = useDispatch();
 
   const capsuleCreator = user._id;
+  console.log("uuuuuuuuuu", capsuleCreator, user);
 
   useEffect(() => {
     console.log("xxxxxxxxxxxx", capsule);
@@ -40,7 +41,8 @@ const Form = ({
       console.log("---->>>>>", capsuleData);
       dispatch(updateCapsule(currentId, capsuleData));
     } else {
-      dispatch(createCapsule(capsuleData, capsuleCreator));
+      const capsuleToBeCreated = { ...capsuleData, creator: capsuleCreator };
+      dispatch(createCapsule(capsuleToBeCreated));
     }
     handleModal();
     clear();
