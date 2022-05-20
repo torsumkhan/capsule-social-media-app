@@ -1,11 +1,19 @@
 //Create handlers for the routes
 
 //import postCapsule from the models folder
+
 import mongoose from "mongoose";
 import postCapsule from "../models/postCapsule.js";
 
 //Reference - https://nodejs.org/en/knowledge/errors/what-is-try-catch/ - Each callback function should have a try and catch block
 //To get all posts from the database
+
+export const getImage = async (req, res) => {
+  const { id } = req.params;
+  const image = await postCapsule.findById(id, "title");
+  console.log(image);
+};
+
 export const getCapsules = async (req, res) => {
   try {
     const allPosts = await postCapsule.find(); //.find() gets all the posts
@@ -18,6 +26,7 @@ export const getCapsules = async (req, res) => {
 //To get a single post with the ID
 export const getPost = async (req, res) => {
   const { id } = req.params;
+
   try {
     const singlePost = await postCapsule.findById(id);
     res.status(201).json(singlePost);
@@ -58,7 +67,7 @@ export const deleteCapsule = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("Post with this ID does not exist.");
 
-  await postCapsule.findByIdAndRemove(id);
+  await postCapsule.findByIdAndRemove();
 
   res.json({ message: "Deleted Successfully" });
 };

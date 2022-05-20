@@ -19,6 +19,7 @@ import useStyles from "./styles";
 import { getCapsule } from "../../actions/capsules";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import { deleteCapsule, likeCapsule } from "../../actions/capsules";
+import DownloadIcon from "@mui/icons-material/Download";
 
 const Details = () => {
   const theme = useTheme();

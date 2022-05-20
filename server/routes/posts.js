@@ -9,12 +9,14 @@ import {
   deleteCapsule,
   likeCapsule,
   getPost,
+  getImage,
 } from "../controllers/posts.js";
 
 const router = express.Router();
 
 router.get("/", getCapsules);
 router.get("/:id", getPost);
+router.get("/:id", getImage);
 
 router.post("/", createCapsule);
 router.put("/:id", updateCapsule);
