@@ -25,7 +25,6 @@ const Home = ({ setLoginUser, user, capsule }) => {
   const [show, setShow] = useState(true);
   const [updateForm, setUpdateForm] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   const classes = useStyles();
   const disptach = useDispatch();
@@ -83,20 +82,10 @@ const Home = ({ setLoginUser, user, capsule }) => {
     setUpdate(true);
   };
 
-  const capsulesdd = useSelector((state) => state.capsules);
-
-  const searchOnChange = (e) => {
-    console.log("This is target value", e.target.value);
-    setSearchTerm(e.target.value);
-  };
-
-  console.log("search", capsulesdd);
-  console.log("vvvvvv", capsulesdd.tags);
   return (
     <Box>
       {show ? <Header setLoginUser={setLoginUser} /> : null}
 
-      <input type="text" placeholder="Search" onChange={searchOnChange} />
       <Grow in>
         <Container maxWidth="xl">
           <div style={{ margin: "2.4rem" }}>

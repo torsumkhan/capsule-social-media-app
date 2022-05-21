@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../UIComponents/Header";
+import Comments from "./Comments";
 import {
   Typography,
   CircularProgress,
@@ -15,16 +16,15 @@ import { useTheme } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import useStyles from "./styles";
 import { getCapsule } from "../../actions/capsules";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import { deleteCapsule, likeCapsule } from "../../actions/capsules";
 import DownloadIcon from "@mui/icons-material/Download";
 
 const Details = () => {
-  const theme = useTheme();
+  const [comments, setComments] = useState("");
+  const [commentList, setCommentList] = useState([]);
   const { post: capsule } = useSelector((state) => {
-    console.log(state);
     return state.capsules;
   });
   const dispatch = useDispatch();
@@ -38,6 +38,17 @@ const Details = () => {
   useEffect(() => {
     console.log(capsule);
   }, [capsule]);
+
+  const commentInput = (e) => {
+    setComments(e.target.value);
+  };
+
+  const commentSubmit = (e) => {
+    e.preventDefault();
+    const text = comments;
+    setCommentList([...commentList, text]);
+    setComments("");
+  };
 
   if (!capsule) {
     return <></>;
@@ -97,29 +108,35 @@ const Details = () => {
             <Typography gutterBottom variant="h6">
               Write a comment
             </Typography>
-            <TextField
-              fullWidth
-              rows={4}
-              variant="outlined"
-              label="Comment"
-              multiline
-            />
-            <br />
-            <Button
-              style={{
-                marginTop: "10px",
-                backgroundColor: "#9b5de5",
-                color: "white",
-              }}
-              fullWidth
-              color="primary"
-              variant="contained"
-            >
-              Comment
-            </Button>
+            <form onSubmit={commentSubmit} typeof="text">
+              <TextField
+                fullWidth
+                rows={4}
+                variant="outlined"
+                label="Comment"
+                multiline
+                value={comments}
+                onChange={commentInput}
+              />
+              <br />
+              <Button
+                style={{
+                  marginTop: "10px",
+                  backgroundColor: "#9b5de5",
+                  color: "white",
+                }}
+                fullWidth
+                color="primary"
+                variant="contained"
+                type="submit"
+              >
+                Comment
+              </Button>
+            </form>
           </div>
         </div>
       </Container>
+      <Comments commentList={commentList} />
     </>
   );
 };

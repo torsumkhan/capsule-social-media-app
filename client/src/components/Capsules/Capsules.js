@@ -63,9 +63,16 @@ const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
         }}
       >
         <input
-          style={{ widt: "300px", height: "40px" }}
+          style={{
+            width: "75%",
+            height: "10px",
+            borderRadius: "10px",
+            fontSize: "16px",
+            padding: "20px",
+            border: "1px solid rgba(0, 0, 0, 0.05)",
+          }}
           type="text"
-          placeholder="Search"
+          placeholder="Search tags..."
           onChange={searchOnChange}
         />
       </div>
