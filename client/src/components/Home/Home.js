@@ -82,6 +82,10 @@ const Home = ({ setLoginUser, user, capsule }) => {
     setUpdate(true);
   };
 
+  const navbarTog = () => {
+    setShow(true);
+  };
+
   return (
     <Box>
       {show ? <Header setLoginUser={setLoginUser} /> : null}
@@ -136,6 +140,7 @@ const Home = ({ setLoginUser, user, capsule }) => {
             setCurrentId={setCurrentId}
             handleModal={handleModal}
             user={user}
+            navbarTog={navbarTog}
           />
         </Box>
       </Modal>

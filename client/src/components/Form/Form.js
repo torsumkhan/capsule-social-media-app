@@ -12,6 +12,7 @@ const Form = ({
   clearCurrentId,
   torsum,
   user,
+  navbarTog,
 }) => {
   const initialState = {
     name: "",
@@ -47,6 +48,7 @@ const Form = ({
     handleModal();
     clear();
     clearCurrentId();
+    navbarTog();
   };
   const clear = () => {
     setCapsuleData({

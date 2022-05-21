@@ -30,6 +30,7 @@ const App = () => {
           <Route path="/user/login">
             <Login setLoginUser={setLoginUser} />
           </Route>
+
           <Route path="/user/register">
             <Register />
           </Route>

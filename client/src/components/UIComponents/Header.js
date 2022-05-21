@@ -17,8 +17,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Mail from "@material-ui/icons/Mail";
 import Notifications from "@material-ui/icons/Notifications";
 import { format } from "date-fns";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -50,8 +48,6 @@ const Header = ({ setLoginUser }) => {
         <Typography sx={{ display: { xs: "none", sm: "block" } }}>
           Today is the {format(new Date(), "do MMMM Y")}
         </Typography>
-
-        {/* <input /> */}
 
         <Icons>
           <Badge badgeContent={4} color="error">
