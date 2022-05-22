@@ -80,6 +80,15 @@ const Capsule = ({
     );
   }
 
+  let tweets;
+  if (user._id === capsule.creator) {
+    tweets = (
+      <IconButton onClick={tweetfunc}>
+        <TwitterIcon fontSize="small" style={{ color: "white" }} />
+      </IconButton>
+    );
+  }
+
   console.log("capsule creator ---->", capsule, capsule.Creator, user._id);
 
   return (
@@ -95,11 +104,7 @@ const Capsule = ({
         <Typography variant="body2">
           {moment(capsule.createdAt).fromNow()}
         </Typography>
-        <div>
-          <IconButton onClick={tweetfunc}>
-            <TwitterIcon fontSize="small" style={{ color: "white" }} />
-          </IconButton>
-        </div>
+        <div>{tweets}</div>
       </div>
 
       <div className={classes.overlay2}>
