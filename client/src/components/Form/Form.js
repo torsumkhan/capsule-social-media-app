@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import { TextField, Button, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import useStyles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,17 +29,14 @@ const Form = ({
   const dispatch = useDispatch();
 
   const capsuleCreator = user._id;
-  console.log("uuuuuuuuuu", capsuleCreator, user);
 
   useEffect(() => {
-    console.log("xxxxxxxxxxxx", capsule);
     if (capsule) setCapsuleData(capsule);
   }, [capsule]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
-      console.log("---->>>>>", capsuleData);
       dispatch(updateCapsule(currentId, capsuleData));
     } else {
       const capsuleToBeCreated = { ...capsuleData, creator: capsuleCreator };

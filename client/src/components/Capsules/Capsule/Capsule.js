@@ -7,7 +7,6 @@ import {
   CardMedia,
   Button,
   Typography,
-  ButtonBase,
   IconButton,
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
@@ -21,6 +20,7 @@ import { FacebookShareButton } from "react-share";
 import { FacebookIcon } from "react-share";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EditIcon from "@mui/icons-material/Edit";
+import OpenInFullRoundedIcon from "@mui/icons-material/OpenInFullRounded";
 
 const Capsule = ({
   capsule,
@@ -40,13 +40,9 @@ const Capsule = ({
     window.open(twitterUrl, "_blank");
   };
 
-  console.log("user from home--->", user);
-
   const openDetails = () => {
     history.push(`/posts/${capsule._id}`);
   };
-
-  console.log("check capsule", capsule);
 
   let edits;
   if (user._id === capsule.creator) {
@@ -89,8 +85,6 @@ const Capsule = ({
     );
   }
 
-  console.log("capsule creator ---->", capsule, capsule.Creator, user._id);
-
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -109,7 +103,7 @@ const Capsule = ({
 
       <div className={classes.overlay2}>
         <Button style={{ color: "white" }} size="small" onClick={openDetails}>
-          <MoreHorizIcon fontSize="medium" />
+          <OpenInFullRoundedIcon fontSize="small" />
         </Button>
       </div>
       <div className={classes.details}>

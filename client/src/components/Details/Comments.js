@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Avatar, Grid, Paper, Container } from "@material-ui/core";
 import moment from "moment";
 import "./styles.css";

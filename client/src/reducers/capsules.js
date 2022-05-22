@@ -11,7 +11,6 @@ export default (capsules = [], action) => {
     case "FETCH_ALL":
       return action.payload;
     case "FETCH_POST":
-      console.log(action.payload);
       return action.payload;
     case "CREATE":
       return [...capsules, action.payload];

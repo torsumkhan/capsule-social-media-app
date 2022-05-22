@@ -6,11 +6,8 @@ import {
   Typography,
   Toolbar,
   styled,
-  InputBase,
   Badge,
   Avatar,
-  Menu,
-  MenuItem,
 } from "@material-ui/core";
 import Camera from "@material-ui/icons/Camera";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -19,6 +16,7 @@ import Notifications from "@material-ui/icons/Notifications";
 import { format } from "date-fns";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Hidden } from "@material-ui/core";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -39,7 +37,6 @@ const Icons = styled(Box)({
 });
 
 const Header = ({ setLoginUser }) => {
-  const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -52,8 +49,8 @@ const Header = ({ setLoginUser }) => {
             onClick={() => history.goBack()}
           />
         </Typography>
-        <Typography sx={{ display: { xs: "none", sm: "block" } }}>
-          Today is the {format(new Date(), "do MMMM Y")}
+        <Typography sx={{ display: { xs: "none" } }}>
+          <Hidden xsDown>Today is the {format(new Date(), "do MMMM Y")}</Hidden>
         </Typography>
 
         <Icons>
@@ -70,29 +67,10 @@ const Header = ({ setLoginUser }) => {
             <Avatar
               style={{ width: 36, height: 36 }}
               src={require("../../images/86.jpg")}
-              onClick={(e) => setOpen(true)}
             />
           </Badge>
         </Icons>
       </StyledToolbar>
-      <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
-        open={open}
-        onClose={(e) => setOpen(false)}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-      >
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
-        <MenuItem onClick={() => {}}>Logout</MenuItem>
-      </Menu>
     </AppBar>
   );
 };

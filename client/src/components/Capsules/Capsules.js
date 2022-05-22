@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Capsule from "./Capsule/Capsule";
-import { Container, Grid } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 import useStyles from "./styles";
@@ -8,7 +8,6 @@ import Masonry from "react-masonry-css";
 import { useDispatch } from "react-redux";
 import { getCapsules } from "../../actions/capsules";
 import "./masonry.css";
-import { textAlign } from "@mui/system";
 
 const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
   const dispatch = useDispatch();
@@ -24,7 +23,6 @@ const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
   const [filteredCaps, setFilteredCaps] = useState([]);
 
   const classes = useStyles();
-  console.log("This is the tags", capsules);
 
   const breakpoints = {
     default: 3,
@@ -33,12 +31,10 @@ const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
   };
 
   useEffect(() => {
-    console.log("filteredcaps", capsules);
     setFilteredCaps(capsules);
   }, [capsules]);
 
   useEffect(() => {
-    console.log("lets see", capsules);
     if (Array.isArray(capsules)) {
       const newCapsules = capsules.filter((c) => {
         return c.tags.includes(searchTerm);
@@ -51,10 +47,7 @@ const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
     }
   }, [searchTerm]);
 
-  console.log("check erros", capsules);
-
   const searchOnChange = (e) => {
-    console.log("This is target value", e.target.value);
     setSearchTerm(e.target.value);
   };
 

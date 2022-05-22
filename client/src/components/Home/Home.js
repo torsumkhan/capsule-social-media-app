@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "../UIComponents/Header";
 import Form from "../Form/Form";
 import Capsules from "../Capsules/Capsules";
 import useStyles from "../../styles";
-import { Link } from "react-router-dom";
 import {
   Container,
   Grow,
@@ -13,12 +12,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { getCapsules } from "../../actions/capsules";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import { useSelector } from "react-redux";
-import Paper from "@mui/material/Paper";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Home = ({ setLoginUser, user, capsule }) => {
   const [currentId, setCurrentId] = useState(null);
@@ -40,17 +35,11 @@ const Home = ({ setLoginUser, user, capsule }) => {
     color: "white",
   };
 
-  console.log("user--------->", user);
-
   const modalStyle = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   };
-
-  // useEffect(() => {
-  //   disptach(getCapsules());
-  // }, []);
 
   const handleModal = (isUpdate) => {
     setOpen(!open);
@@ -87,39 +76,33 @@ const Home = ({ setLoginUser, user, capsule }) => {
     setShow(true);
   };
 
-  const theme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
-
   return (
     <Box>
       {show ? <Header setLoginUser={setLoginUser} /> : null}
 
       <Grow in>
         <Container maxWidth="xl">
-          <ThemeProvider theme={theme}>
-            <div style={{ margin: "2.4rem" }}>
-              <Grid
-                container
-                justifyContent="space-between"
-                alignItems="stretch"
-                spacing={5}
-                style={{ direction: "column-reverse" }}
-              >
-                <Grid item xs={12} sm={7} md={12}>
-                  <Capsules
-                    setCurrentId={setCurrentId}
-                    handleModal={handleModal}
-                    showNav={showNav}
-                    updateForm={updateForm}
-                    user={user}
-                  />
-                </Grid>
+          <div style={{ margin: "2.4rem" }}>
+            <Grid
+              container
+              justifyContent="space-between"
+              alignItems="stretch"
+              spacing={5}
+              style={{
+                direction: "column-reverse",
+              }}
+            >
+              <Grid item xs={12} sm={7} md={12}>
+                <Capsules
+                  setCurrentId={setCurrentId}
+                  handleModal={handleModal}
+                  showNav={showNav}
+                  updateForm={updateForm}
+                  user={user}
+                />
               </Grid>
-            </div>
-          </ThemeProvider>
+            </Grid>
+          </div>
         </Container>
       </Grow>
 

@@ -3,7 +3,6 @@ import Header from "../UIComponents/Header";
 import Comments from "./Comments";
 import {
   Typography,
-  CircularProgress,
   Card,
   Box,
   CardContent,
@@ -12,7 +11,6 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
-import { useTheme } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
@@ -35,9 +33,7 @@ const Details = () => {
     dispatch(getCapsule(id));
   }, [id]);
 
-  useEffect(() => {
-    console.log(capsule);
-  }, [capsule]);
+  useEffect(() => {}, [capsule]);
 
   const commentInput = (e) => {
     setComments(e.target.value);
