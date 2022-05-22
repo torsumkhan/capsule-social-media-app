@@ -47,9 +47,9 @@ const Home = ({ setLoginUser, user, capsule }) => {
     justifyContent: "center",
   };
 
-  useEffect(() => {
-    disptach(getCapsules());
-  }, []);
+  // useEffect(() => {
+  //   disptach(getCapsules());
+  // }, []);
 
   const handleModal = (isUpdate) => {
     setOpen(!open);

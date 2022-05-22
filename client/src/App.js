@@ -5,12 +5,14 @@ import Add from "./components/Add/Add";
 import Form from "./components/Form/Form";
 import Register from "./components/Register/Register";
 import Details from "./components/Details/Details";
+import Chat from "./components/Chat/Chat";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Routes,
   useHistory,
+  Redirect,
 } from "react-router-dom";
 
 const App = () => {
@@ -34,6 +36,8 @@ const App = () => {
           <Route path="/user/register">
             <Register />
           </Route>
+
+          <Route path="/chat">{!user ? <Redirect to="/" /> : <Chat />}</Route>
           <Route exact path="/add">
             <Add />
           </Route>

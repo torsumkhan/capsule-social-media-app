@@ -17,6 +17,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Mail from "@material-ui/icons/Mail";
 import Notifications from "@material-ui/icons/Notifications";
 import { format } from "date-fns";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -38,12 +40,17 @@ const Icons = styled(Box)({
 
 const Header = ({ setLoginUser }) => {
   const [open, setOpen] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <AppBar style={{ background: "#9b5de5", zIndex: 3000 }} position="sticky">
       <StyledToolbar>
         <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
-          <Camera sx={{ display: { xs: "block", sm: "none" } }} />
+          <Camera
+            sx={{ display: { xs: "block", sm: "none" } }}
+            onClick={() => history.goBack()}
+          />
         </Typography>
         <Typography sx={{ display: { xs: "none", sm: "block" } }}>
           Today is the {format(new Date(), "do MMMM Y")}

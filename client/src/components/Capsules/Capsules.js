@@ -5,10 +5,20 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 import useStyles from "./styles";
 import Masonry from "react-masonry-css";
+import { useDispatch } from "react-redux";
+import { getCapsules } from "../../actions/capsules";
 import "./masonry.css";
 import { textAlign } from "@mui/system";
 
 const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const dispatchFunc = async () => {
+      console.log(await dispatch(getCapsules()));
+    };
+    dispatchFunc();
+    dispatch(getCapsules());
+  }, []);
   const [searchTerm, setSearchTerm] = useState("");
   const capsules = useSelector((state) => state.capsules);
   const [filteredCaps, setFilteredCaps] = useState([]);
@@ -28,22 +38,28 @@ const Capsules = ({ setCurrentId, handleModal, showNav, updateForm, user }) => {
   }, [capsules]);
 
   useEffect(() => {
-    const newCapsules = capsules.filter((c) => {
-      return c.tags.includes(searchTerm);
-    });
-    if (searchTerm === "") {
-      setFilteredCaps(capsules);
-    } else {
-      setFilteredCaps(newCapsules);
+    console.log("lets see", capsules);
+    if (Array.isArray(capsules)) {
+      const newCapsules = capsules.filter((c) => {
+        return c.tags.includes(searchTerm);
+      });
+      if (searchTerm === "") {
+        setFilteredCaps(capsules);
+      } else {
+        setFilteredCaps(newCapsules);
+      }
     }
   }, [searchTerm]);
+
+  console.log("check erros", capsules);
 
   const searchOnChange = (e) => {
     console.log("This is target value", e.target.value);
     setSearchTerm(e.target.value);
   };
 
-  return !capsules.length ? (
+  return !Array.isArray(filteredCaps) ||
+    (filteredCaps.length === 0 && searchTerm === "") ? (
     <div
       style={{
         justifyContent: "center",

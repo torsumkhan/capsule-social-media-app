@@ -7,6 +7,7 @@ import cors from "cors";
 import postRoutes from "./routes/posts.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.js";
+import { Server } from "socket.io";
 
 //initialize the app
 
